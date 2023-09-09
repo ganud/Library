@@ -30,12 +30,18 @@
 }
 .main-content .book-item {
   display: flex;
+  flex-direction: column;
   padding: 20px;
   border-radius: 20px;
   box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.1);
   background-color: rgb(243, 243, 243);
   max-height: 200px;
-  justify-content: center;
+  align-items: center;
+}
+.main-content .book-item .item-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .modal {

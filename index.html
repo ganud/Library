@@ -14,7 +14,6 @@
             <button id="bookAdder">Add Book</button>
 
             <div id="myModal" class="modal">
-
                 <!-- Modal content -->
                 <div class="modal-content">
                     <div class="modal-header">
@@ -29,8 +28,8 @@
                             <input type="text" id="author" name="author" required><br>
                             <label for="pages">Pages: </label><br>
                             <input type="number" id="pages" name="pages" required><br>
-                            <label for="read">Read: </label><br>
-                            <input type="read" id="read" name="read" required><br>
+                            <label for="read">Read: </label>
+                            <input type="radio" id="read" name="read" value="yes"><br>
                             <button type="submit" id="submit-book">Add book</button>
                         </form>
                       </div>
@@ -41,7 +40,17 @@
               </div>
         </div>
         <div class="main-content">
+            <div class="book-item">
+                <div class="item-container">
+                    <div>
+                        wfewefjwfeijwoefjwfeijbr
+                        <br>wefofjwoijwfe <br>fwijfwijwofejwoefi <br>wjwojfoeijof
+                    </div>
+                    <button>Unfinished</button>
+                    <button data-index="0" onclick="removeBook(this)">Remove</button>
+                </div>
 
+            </div>
         </div>
     </div>
 </body>

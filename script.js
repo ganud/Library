@@ -15,10 +15,31 @@ function Book(title, author, pages, read) {
 
 function populateLibrary() {
   mainContent.innerHTML = "";
-  myLibrary.forEach((book) => {
+  myLibrary.forEach((book, index) => {
+
+    //Change InnerHTML to DOM elements
     let div = document.createElement('div');
     div.classList.add("book-item");
-    div.innerHTML = `Title: ${book.title}<br/>Author: ${book.author}<br/>Pages: ${book.pages}<br/>Read: ${book.read}`;
+    let itemContainer = document.createElement('div');
+    div.appendChild(itemContainer);
+
+    // let readButton = document.createElement('button');
+    // let removeButton = document.createElement('button');
+    // removeButton.setAttribute("data-index", 0);
+    // itemContainer.appendChild(removeButton)
+    
+    // let textdiv = document.createElement('div')
+    // textdiv.innerHTML = `Title: ${book.title}<br/>Author: ${book.author}<br/>Pages: ${book.pages}`;
+    // div.appendChild(textdiv);
+
+    // Poorly Pasted HTML of a book item card
+    div.innerHTML = `<div class="item-container">
+    <div>
+    Title: ${book.title}<br/>Author: ${book.author}<br/>Pages: ${book.pages}
+    </div>
+    <button>Unfinished</button>
+    <button class="remove-button" value="${index}" onclick="removeBook(this)">Remove</button>
+</div>`;
     mainContent.appendChild(div);
   });
 }
@@ -63,18 +84,33 @@ document.getElementById("modal-form").addEventListener("submit", function (e) {
 });
 
 let formInputs = []
-// Take form input on submit
 const form = document.querySelector('form')
+// Take form input on submit
 form.addEventListener('submit', (e) => {
   formInputs = []
   e.preventDefault();
+  // Extract user input
   const formData = new FormData(form);
   for (const pair of formData.entries()) {
     formInputs.push(pair[1]);
   }
 
-  // Parse form input data into new object
+  // Parse form input data into Library, then clear everything
   appendBook(formInputs[0],formInputs[1],formInputs[2],formInputs[3]);
-  
+  var allInputs = document.querySelectorAll('input');
+  allInputs.forEach(singleInput => singleInput.value = '');
 })
 
+function removeBook(e) {
+  let index = e.value;
+  myLibrary.splice(index, 1);
+  mainContent.innerHTML = "";
+  populateLibrary();
+}
+
+// Add event listeners to the remove-buttons
+var removeButtons = document.getElementsByClassName("remove-button");
+
+for (var i = 0; i < removeButtons.length; i++) {
+  
+}
