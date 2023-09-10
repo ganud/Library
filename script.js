@@ -16,30 +16,33 @@ function Book(title, author, pages, read) {
 function populateLibrary() {
   mainContent.innerHTML = "";
   myLibrary.forEach((book, index) => {
-
-    //Change InnerHTML to DOM elements
     let div = document.createElement('div');
     div.classList.add("book-item");
     let itemContainer = document.createElement('div');
     div.appendChild(itemContainer);
-
-    // let readButton = document.createElement('button');
-    // let removeButton = document.createElement('button');
-    // removeButton.setAttribute("data-index", 0);
-    // itemContainer.appendChild(removeButton)
     
-    // let textdiv = document.createElement('div')
-    // textdiv.innerHTML = `Title: ${book.title}<br/>Author: ${book.author}<br/>Pages: ${book.pages}`;
-    // div.appendChild(textdiv);
+    // Creates a book item.
+    // Button indicates read if user selected the checkbox.
+    if (book.read == "yes") {
+      div.innerHTML = `<div class="item-container">
+      <div>
+      Title: ${book.title}<br/>Author: ${book.author}<br/>Pages: ${book.pages}
+      </div>
+      <button onclick="toggleRead(this)">Read</button>
+      <button class="remove-button" value="${index}" onclick="removeBook(this)">Remove</button>
+  </div>`;
+    }
+    else {
+      div.innerHTML = `<div class="item-container">
+      <div>
+      Title: ${book.title}<br/>Author: ${book.author}<br/>Pages: ${book.pages}
+      </div>
+      <button onclick="toggleRead(this)">Unread</button>
+      <button class="remove-button" value="${index}" onclick="removeBook(this)">Remove</button>
+  </div>`;
+    }
 
-    // Poorly Pasted HTML of a book item card
-    div.innerHTML = `<div class="item-container">
-    <div>
-    Title: ${book.title}<br/>Author: ${book.author}<br/>Pages: ${book.pages}
-    </div>
-    <button>Unfinished</button>
-    <button class="remove-button" value="${index}" onclick="removeBook(this)">Remove</button>
-</div>`;
+
     mainContent.appendChild(div);
   });
 }
@@ -94,11 +97,14 @@ form.addEventListener('submit', (e) => {
   for (const pair of formData.entries()) {
     formInputs.push(pair[1]);
   }
-
+  console.log(formInputs)
   // Parse form input data into Library, then clear everything
   appendBook(formInputs[0],formInputs[1],formInputs[2],formInputs[3]);
   var allInputs = document.querySelectorAll('input');
   allInputs.forEach(singleInput => singleInput.value = '');
+
+  // This reverts accidently removing the checkbox value
+  allInputs[3].value = "yes";
 })
 
 function removeBook(e) {
@@ -108,9 +114,11 @@ function removeBook(e) {
   populateLibrary();
 }
 
-// Add event listeners to the remove-buttons
-var removeButtons = document.getElementsByClassName("remove-button");
-
-for (var i = 0; i < removeButtons.length; i++) {
-  
+function toggleRead(e) {
+  if (e.innerHTML == "Unread") {
+    e.innerHTML = "Read";
+  }
+  else {
+    e.innerHTML = "Unread";
+  }
 }
