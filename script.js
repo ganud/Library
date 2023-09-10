@@ -1,9 +1,5 @@
-
-const book1 = new Book("Joe's Wonderland", "Borgs", 200, true)
-const book2 = new Book("Bob's Wonderland", "Borgs", 200, true)
-const book4 = new Book("Jim's Wonderland", "Borgs", 200, true)
 const mainContent = document.querySelector('.main-content')
-const myLibrary = [book1, book2, book4];
+const myLibrary = [];
 
 // Book Constructor
 function Book(title, author, pages, read) {
@@ -28,7 +24,7 @@ function populateLibrary() {
       <div>
       Title: ${book.title}<br/>Author: ${book.author}<br/>Pages: ${book.pages}
       </div>
-      <button onclick="toggleRead(this)">Read</button>
+      <button onclick="toggleRead(this)" style="color:#008000">Read</button>
       <button class="remove-button" value="${index}" onclick="removeBook(this)">Remove</button>
   </div>`;
     }
@@ -37,7 +33,7 @@ function populateLibrary() {
       <div>
       Title: ${book.title}<br/>Author: ${book.author}<br/>Pages: ${book.pages}
       </div>
-      <button onclick="toggleRead(this)">Unread</button>
+      <button onclick="toggleRead(this)" style="color:red">Unread</button>
       <button class="remove-button" value="${index}" onclick="removeBook(this)">Remove</button>
   </div>`;
     }
@@ -52,9 +48,7 @@ function appendBook(title, author, pages, read) {
   myLibrary.push(newBook);
   populateLibrary();
 }
-
-populateLibrary();
-
+// Code taken from w3schools
 // Get the modal
 var modal = document.getElementById("myModal");
 
@@ -85,6 +79,8 @@ document.getElementById("modal-form").addEventListener("submit", function (e) {
   e.preventDefault();
   modal.style.display = "none";
 });
+// Code taken from w3schools
+
 
 let formInputs = []
 const form = document.querySelector('form')
@@ -117,8 +113,12 @@ function removeBook(e) {
 function toggleRead(e) {
   if (e.innerHTML == "Unread") {
     e.innerHTML = "Read";
+    e.style.color = "#008000";
   }
   else {
     e.innerHTML = "Unread";
+    e.style.color = "red";
   }
 }
+
+populateLibrary();

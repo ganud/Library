@@ -22,7 +22,7 @@
 }
 
 .main-content {
-  background-color: rgb(0, 168, 0);
+  background-color: rgb(64, 133, 172);
   padding: 20px;
   display: grid;
   grid-gap: 20px;
@@ -123,4 +123,17 @@
     top: 0;
     opacity: 1;
   }
+}
+#bookAdder {
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid gray;
+}
+
+#bookAdder:hover {
+  background-color: #f0f0f0;
+}
+
+.header {
+  padding: 20px;
 }/*# sourceMappingURL=style.css.map */
