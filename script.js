@@ -120,5 +120,3 @@ function toggleRead(e) {
     e.style.color = "red";
   }
 }
-
-populateLibrary();
