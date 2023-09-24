@@ -1,7 +1,7 @@
 const mainContent = document.querySelector('.main-content')
 const myLibrary = [];
 
-// Book Constructor
+
 class Book {
   constructor(title, author, pages, read) {
     this.title = title;
