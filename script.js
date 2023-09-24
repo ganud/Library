@@ -2,12 +2,15 @@ const mainContent = document.querySelector('.main-content')
 const myLibrary = [];
 
 // Book Constructor
-function Book(title, author, pages, read) {
+class Book {
+  constructor(title, author, pages, read) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
 }
+}
+
 
 function populateLibrary() {
   mainContent.innerHTML = "";
@@ -37,7 +40,6 @@ function populateLibrary() {
       <button class="remove-button" value="${index}" onclick="removeBook(this)">Remove</button>
   </div>`;
     }
-
 
     mainContent.appendChild(div);
   });
